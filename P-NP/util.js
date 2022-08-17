@@ -161,7 +161,6 @@ configurable: true,
 	console.log("%cP-NP Patcher", "font-size:40px;color:#540052;font-weight:900;font-family:sans-serif;");
 	console.log("%cVersion ${constants_1.VERSION}", "font-size:20px;color:#000025;font-weight:700;font-family:sans-serif;");
 	
-	console.image((e => e[Math.floor(Math.random() * e.length)])(${JSON.stringify(displayImages_1.displayImages)}));
 	SW.Load.onGameLoad();
 	setTimeout(() =>
 		(async () =>
