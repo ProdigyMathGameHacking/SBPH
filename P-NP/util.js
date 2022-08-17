@@ -47,9 +47,6 @@ const getGameFile = async (version) => {
     }
 };
 exports.getGameFile = getGameFile;
-const logtraffic = () => {
-};
-exports.logtraffic = logtraffic;
 const patchGameFile = (str, version) => {
     const variables = [str.match(/window,function\((.)/)[1], str.match(/var (.)={}/)[1]];
     const patches = Object.entries({
@@ -194,8 +191,6 @@ let patchedPublicGameFile = null;
 const getPatchedPublicGameFile = async (hash) => {
     if (patchedPublicGameFile)
         return patchedPublicGameFile;
-    if (!hash.match(/^[a-fA-F0-9]+$/))
-        throw new Error("Invalid hash.");
     const file = await (await (0, node_fetch_1.default)(`https://code.prodigygame.com/js/public-game-${hash}.min.js`)).text();
     return (patchedPublicGameFile = `
 	(() => {

@@ -11,16 +11,6 @@ const js_beautify_1 = __importDefault(require("js-beautify"));
 const fs_1 = __importDefault(require("fs"));
 const unminifySource = false;
 const port = 1337; // <------ Port
-function toHits() {
-    var final = "";
-    fs_1.default.readFile("hits.json", "utf8", function (err, data) {
-        const contents = Number(data);
-        const incremented = contents + 1;
-        const toStr = incremented.toString();
-        final = toStr;
-        fs_1.default.writeFile("hits.json", final, (error) => { });
-    });
-}
 (async () => {
     const app = (0, express_1.default)();
     app.set("trust proxy", true);
@@ -32,28 +22,14 @@ function toHits() {
         res.set("Cache-Control", "no-store");
         next();
     });
-
+    // ./game.min.js
     app.get(/\/(api\/)?game.min.js/, async (req, res) => {
         toHits();
         if (req.query.version && typeof req.query.version !== "string")
             return res.status(400).send("Invalid version specified.");
         const version = req.query.version ?? gs.gameClientVersion;
         try {
-            res.type("js").send(`// game.min.js v${version}\n\n` +
-                (unminifySource ? js_beautify_1.default : (_) => _)(await (0, util_1.getPatchedGameFile)(version)));
-        }
-        catch (e) {
-            if (!(e instanceof Error))
-                throw e;
-            return res.status(400).send(e.message);
-        }
-    });
-    // ./public-game.min.js
-    app.get(/\/(api\/)?public-game.min.js/, async (req, res) => {
-        if (typeof req.query.hash !== "string")
-            return res.status(400).send("No hash specified.");
-        try {
-            res.type("js").send(await (0, util_1.getPatchedPublicGameFile)(req.query.hash));
+            res.type("js").send((unminifySource ? js_beautify_1.default : (_) => _)(await (0, util_1.getPatchedGameFile)(version)));
         }
         catch (e) {
             if (!(e instanceof Error))
