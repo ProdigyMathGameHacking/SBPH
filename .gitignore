@@ -1,0 +1,18 @@
+# Generated Config files
+config.json
+
+# Generated Log files
+*.log
+
+# NodeJS/npm modules
+node_modules/
+
+# Extension Private Key files
+*.pem
+
+# MacOS
+**/.DS_Store
+
+# IntelliJ IDEA
+/.idea/
+*.iml
