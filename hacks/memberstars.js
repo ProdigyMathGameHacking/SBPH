@@ -1,4 +1,4 @@
-function getMemberStars (amt) {
+function setMemberStars (amt) {
 
     /** player variable */
     const player = Boot.prototype.game._state._current.user.source;
@@ -13,4 +13,4 @@ function getMemberStars (amt) {
 
 
 // TODO implement swal later
-getMemberStars(100000);
+setMemberStars(100000);

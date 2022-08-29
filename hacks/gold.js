@@ -1,4 +1,4 @@
-function getLevel (lvl) {
+function setLevel (lvl) {
 
     /** player variable */
     const player = Boot.prototype.game._state._current.user.source;
@@ -28,4 +28,4 @@ function getLevel (lvl) {
 }
 
 // TODO Implement swal later
-getLevel(100);
+setLevel(100);
