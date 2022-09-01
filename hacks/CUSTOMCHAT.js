@@ -9,6 +9,7 @@
         Boot.prototype.game._state._current.user.source.chatID=0;
         await sleep(100);
         Boot.prototype.game._state._current.user.chatText.setText(text);
+        Boot.prototype.game._state._current.user.chatText.update();
     }
     
     customChat("Niger");
